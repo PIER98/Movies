@@ -7,12 +7,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MoviesListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
-
 }
 
