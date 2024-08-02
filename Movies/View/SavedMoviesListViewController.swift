@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MoviesListViewController: UIViewController {
+class SavedMoviesListViewController: UIViewController {
     
     //MARK: view objects
     private let tableView: UITableView = {
@@ -41,7 +41,7 @@ class MoviesListViewController: UIViewController {
     }
 }
 
-extension MoviesListViewController: UITableViewDelegate, UITableViewDataSource {
+extension SavedMoviesListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 20
     }
