@@ -6,9 +6,12 @@
 //
 
 import Foundation
+import Moya
+import RxSwift
 
 class MovieService {
     private let baseUrl = "https://api.themoviedb.org/3/trending/movie/day?api_key=aadeed15a6c1e2f021251142b1339190"
+    private let provider = MoyaProvider<MoyaService>()
     
     func fetchData() {
         guard let url = URL(string: baseUrl) else { return }
@@ -22,5 +25,9 @@ class MovieService {
             }
         }
         .resume()
+    }
+    
+    func fetchDataFromMoya() -> Single<[Movie]> {
+        
     }
 }

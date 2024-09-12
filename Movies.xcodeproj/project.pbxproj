@@ -11,6 +11,7 @@
 		3917C1892C5D179A000D4E00 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3917C1882C5D179A000D4E00 /* MovieListViewController.swift */; };
 		39310B082C931A56004D2514 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39310B072C931A56004D2514 /* TabViewController.swift */; };
 		39310B0B2C9320D1004D2514 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39310B0A2C9320D1004D2514 /* MovieCollectionViewCell.swift */; };
+		39310B0D2C936723004D2514 /* MoyaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39310B0C2C936723004D2514 /* MoyaService.swift */; };
 		3971D2422C0E104C00F3C561 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3971D2412C0E104C00F3C561 /* AppDelegate.swift */; };
 		3971D2442C0E104C00F3C561 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3971D2432C0E104C00F3C561 /* SceneDelegate.swift */; };
 		3971D2462C0E104C00F3C561 /* SavedMoviesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3971D2452C0E104C00F3C561 /* SavedMoviesListViewController.swift */; };
@@ -48,6 +49,7 @@
 		3917C1882C5D179A000D4E00 /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
 		39310B072C931A56004D2514 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		39310B0A2C9320D1004D2514 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
+		39310B0C2C936723004D2514 /* MoyaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaService.swift; sourceTree = "<group>"; };
 		3971D23E2C0E104C00F3C561 /* Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3971D2412C0E104C00F3C561 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3971D2432C0E104C00F3C561 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				3996374E2C8F32D7003F6F22 /* MovieService.swift */,
+				39310B0C2C936723004D2514 /* MoyaService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -236,7 +239,6 @@
 				D995AAB49CA47FF5FBE35110 /* Pods-MoviesTests.debug.xcconfig */,
 				97B36F92E95414AB46F1E659 /* Pods-MoviesTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -492,6 +494,7 @@
 				3971D2462C0E104C00F3C561 /* SavedMoviesListViewController.swift in Sources */,
 				3971D2422C0E104C00F3C561 /* AppDelegate.swift in Sources */,
 				3971D2442C0E104C00F3C561 /* SceneDelegate.swift in Sources */,
+				39310B0D2C936723004D2514 /* MoyaService.swift in Sources */,
 				3917C1892C5D179A000D4E00 /* MovieListViewController.swift in Sources */,
 				399637492C8F2503003F6F22 /* MovieListViewModel.swift in Sources */,
 				39310B082C931A56004D2514 /* TabViewController.swift in Sources */,
@@ -582,7 +585,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -645,7 +648,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
