@@ -35,7 +35,7 @@ class MovieListViewController: UIViewController{
     }
     
     private func setupNavigationBar() {
-        self.title = "Movies"
+        self.title = "Discover Movies"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.barTintColor = .black
         let titleColor = [NSAttributedString.Key.foregroundColor: UIColor.white]
