@@ -65,6 +65,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(title:String, poster: UIImage) {
-        
+        titleLabel.text = title
+        posterImage.image = poster
     }
 }

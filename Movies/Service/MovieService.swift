@@ -10,24 +10,22 @@ import Moya
 import RxSwift
 
 class MovieService {
-    private let baseUrl = "https://api.themoviedb.org/3/trending/movie/day?api_key=aadeed15a6c1e2f021251142b1339190"
     private let provider = MoyaProvider<MoyaService>()
+    private let disposeBag = DisposeBag()
     
-    func fetchData() {
-        guard let url = URL(string: baseUrl) else { return }
-        URLSession.shared.dataTask(with: url) { data,_, error in
-            guard let data = data else { return }
-            do {
-                let result = try JSONDecoder().decode(TrendingMovieResponse.self, from: data)
-                print("🤖",result.results.count)
-            } catch {
+    func fetchData(completed: @escaping (Result<TrendingMovieResponse, Error>)-> (Void)) {
+        provider.rx.request(.getMovies).subscribe {response in
+            switch response {
+            case .success(let response):
+                do {
+                    let trendingMovieResponse = try response.map(TrendingMovieResponse.self, using: JSONDecoder())
+                    completed(.success(trendingMovieResponse))
+                }catch {
+                    completed(.failure(error))
+                }
+            case .failure(let error):
                 print(error.localizedDescription)
             }
-        }
-        .resume()
-    }
-    
-    func fetchDataFromMoya() -> Single<[Movie]> {
-        
+        }.disposed(by: disposeBag)
     }
 }

@@ -6,12 +6,22 @@
 //
 
 import Foundation
+import RxSwift
 
 class MovieListViewModel {
     
    private let movieService = MovieService()
+   let movieSubject = PublishSubject<[Movie]>()
 
     func getMovies() {
-        movieService.fetchData()
+        movieService.fetchData(completed: { [weak self] result in
+            switch result {
+            case .success(let response):
+                let movies = response.results
+                self?.movieSubject.onNext(movies)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        })
     }
 }

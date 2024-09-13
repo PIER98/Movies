@@ -6,11 +6,18 @@
 //
 
 import UIKit
+import RxSwift
 
-class MovieListViewController: UIViewController{
+class MovieListViewController: UIViewController {
     
     //MARK: ViewModel
     private let movieListViewModel = MovieListViewModel()
+    
+    //MARK: Data
+    private var movies: [Movie] = []
+    
+    //MARK: Disposable
+    private let disposeBag = DisposeBag()
     
     //MARK: View objects
     private let moviesListCollectionView: UICollectionView = {
@@ -32,6 +39,7 @@ class MovieListViewController: UIViewController{
         setup()
         setupCollectionView()
         movieListViewModel.getMovies()
+        subscribeToViewModel()
     }
     
     private func setupNavigationBar() {
@@ -55,16 +63,25 @@ class MovieListViewController: UIViewController{
         moviesListCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         moviesListCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
+    
+    private func subscribeToViewModel() {
+        movieListViewModel.movieSubject.subscribe {[weak self] movies in
+            self?.movies = movies
+            self?.moviesListCollectionView.reloadData()
+        }.disposed(by: disposeBag)
+    }
 }
 
 extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return movies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.collectionViewIdentifier, for: indexPath) as? MovieCollectionViewCell else { return UICollectionViewCell()}
+        let movie = movies[indexPath.row]
+        cell.configure(title: movie.title, poster: UIImage(systemName: "house.fill")!)
         return cell
     }
     
