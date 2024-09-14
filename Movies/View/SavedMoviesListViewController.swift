@@ -10,7 +10,7 @@ import UIKit
 class SavedMoviesListViewController: UIViewController {
     
     //MARK: view objects
-    private let tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.translatesAutoresizingMaskIntoConstraints = false

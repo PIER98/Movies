@@ -20,7 +20,7 @@ class MovieListViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
     //MARK: View objects
-    private let moviesListCollectionView: UICollectionView = {
+    private lazy var moviesListCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 5
@@ -33,11 +33,20 @@ class MovieListViewController: UIViewController {
         return collectionView
     }()
     
+    private lazy var loader: UIActivityIndicatorView = {
+        let loader = UIActivityIndicatorView()
+        loader.color = .red
+        loader.center = self.view.center
+        return loader
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupActivityIndicator()
         setupNavigationBar()
         setup()
         setupCollectionView()
+        showLoader()
         movieListViewModel.getMovies()
         subscribeToViewModel()
     }
@@ -58,12 +67,42 @@ class MovieListViewController: UIViewController {
     private func setup() {
         view.backgroundColor = .black
         view.addSubview(moviesListCollectionView)
-        moviesListCollectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        moviesListCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         moviesListCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         moviesListCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        moviesListCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        moviesListCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
     
+    private func setupActivityIndicator() {
+        moviesListCollectionView.isHidden = true
+        view.addSubview(loader)
+        loader.style = .large
+        loader.startAnimating()
+    }
+    
+    private func showLoader() {
+        movieListViewModel.isLoading.subscribe(onNext: { [weak self] state in
+            switch state {
+            case .success:
+                self?.hideCollectionView(hide: false)
+            case .failed:
+                self?.hideCollectionView(hide: true)
+                self?.displayAlertController()
+            }
+        }).disposed(by: disposeBag)
+    }
+    
+    private func hideCollectionView(hide: Bool) {
+        loader.stopAnimating()
+        moviesListCollectionView.isHidden = hide
+    }
+    
+    private func displayAlertController() {
+        let alert = UIAlertController(title: "Error to load data", message: "Ops, there was an error ", preferredStyle: .alert)
+        self.present(alert, animated: true)
+    }
+    
+        
     private func subscribeToViewModel() {
         movieListViewModel.movieSubject.subscribe {[weak self] movies in
             self?.movies = movies
