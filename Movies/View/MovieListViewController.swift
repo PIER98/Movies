@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import Kingfisher
 
 class MovieListViewController: UIViewController {
     
@@ -121,7 +122,7 @@ extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.collectionViewIdentifier, for: indexPath) as? MovieCollectionViewCell else { return UICollectionViewCell()}
         let movie = movies[indexPath.row]
-        cell.configure(title: movie.title, poster: UIImage(systemName: "house.fill")!)
+        cell.configure(title: movie.title, poster: movie.poster_path)
         return cell
     }
     

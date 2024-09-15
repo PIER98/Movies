@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MovieCollectionViewCell: UICollectionViewCell {
     
@@ -64,8 +65,10 @@ class MovieCollectionViewCell: UICollectionViewCell {
         addToFavoritesButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
-    func configure(title:String, poster: UIImage) {
+    func configure(title:String, poster: String) {
+        guard let imagePath = URL(string: Constants.imagePath + poster) else { return }
         titleLabel.text = title
-        posterImage.image = poster
+        posterImage.kf.setImage(with: imagePath)
+        print(poster)
     }
 }
