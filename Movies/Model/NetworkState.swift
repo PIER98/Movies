@@ -8,6 +8,7 @@
 import Foundation
 
 enum NetworkState {
-    case success
-    case failed
+    case loading
+    case success(movies: [Movie])
+    case failed(error: Error)
 }

@@ -36,17 +36,15 @@ class MovieListViewController: UIViewController {
     private lazy var loader: UIActivityIndicatorView = {
         let loader = UIActivityIndicatorView()
         loader.color = .red
-        loader.center = self.view.center
+        loader.style = .large
         return loader
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupActivityIndicator()
         setupNavigationBar()
         setup()
         setupCollectionView()
-        showLoader()
         movieListViewModel.getMovies()
         subscribeToViewModel()
     }
@@ -71,46 +69,48 @@ class MovieListViewController: UIViewController {
         moviesListCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         moviesListCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         moviesListCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-    }
-    
-    private func setupActivityIndicator() {
-        moviesListCollectionView.isHidden = true
+        
         view.addSubview(loader)
-        loader.style = .large
-        loader.startAnimating()
+        loader.center = self.view.center
     }
     
     private func showLoader() {
-        movieListViewModel.isLoading.subscribe(onNext: { [weak self] state in
+        moviesListCollectionView.isHidden = true
+        loader.startAnimating()
+    }
+    
+    private func hideLoader() {
+        moviesListCollectionView.isHidden = false
+        loader.stopAnimating()
+    }
+    
+    private func displayAlertController(error: Error) {
+        let alert = UIAlertController(title: "Error to load data", message:error.localizedDescription , preferredStyle: .alert)
+        self.present(alert, animated: true)
+        let action = UIAlertAction(title: "Retry", style: .default) {[weak self] _ in
+            self?.showLoader()
+            self?.movieListViewModel.getMovies()
+        }
+        alert.addAction(action)
+    }
+    
+    private func subscribeToViewModel() {
+        movieListViewModel.stateSubject.subscribe(onNext: {[weak self] state in
             switch state {
-            case .success:
-                self?.hideCollectionView(hide: false)
-            case .failed:
-                self?.hideCollectionView(hide: true)
-                self?.displayAlertController()
+            case .loading:
+                self?.showLoader()
+            case .success(movies: let movies):
+                self?.movies = movies
+                self?.hideLoader()
+            case .failed(error: let error):
+                self?.hideLoader()
+                self?.displayAlertController(error: error)
             }
         }).disposed(by: disposeBag)
     }
-    
-    private func hideCollectionView(hide: Bool) {
-        loader.stopAnimating()
-        moviesListCollectionView.isHidden = hide
-    }
-    
-    private func displayAlertController() {
-        let alert = UIAlertController(title: "Error to load data", message: "Ops, there was an error ", preferredStyle: .alert)
-        self.present(alert, animated: true)
-    }
-    
-        
-    private func subscribeToViewModel() {
-        movieListViewModel.movieSubject.subscribe {[weak self] movies in
-            self?.movies = movies
-            self?.moviesListCollectionView.reloadData()
-        }.disposed(by: disposeBag)
-    }
 }
 
+// MARK: Delegates 
 extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
