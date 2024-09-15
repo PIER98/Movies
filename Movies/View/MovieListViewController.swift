@@ -102,6 +102,7 @@ class MovieListViewController: UIViewController {
             case .success(movies: let movies):
                 self?.movies = movies
                 self?.hideLoader()
+                self?.moviesListCollectionView.reloadData()
             case .failed(error: let error):
                 self?.hideLoader()
                 self?.displayAlertController(error: error)
