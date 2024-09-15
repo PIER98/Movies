@@ -9,6 +9,7 @@ target 'Movies' do
    pod 'RxSwift', '6.7.1'
    pod 'RxCocoa', '6.7.1'
    pod 'Moya/RxSwift', '~> 15.0'
+   pod 'Kingfisher', '~> 7.0'
    
 
   target 'MoviesTests' do
