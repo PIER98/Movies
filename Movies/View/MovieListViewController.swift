@@ -56,6 +56,8 @@ class MovieListViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = .black
         let titleColor = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationController?.navigationBar.largeTitleTextAttributes = titleColor
+        let standardTitleColor = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = standardTitleColor
     }
     
     private func setupCollectionView() {
