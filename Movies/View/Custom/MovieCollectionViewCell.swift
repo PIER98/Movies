@@ -70,6 +70,5 @@ class MovieCollectionViewCell: UICollectionViewCell {
         guard let imagePath = URL(string: Constants.imagePath + poster) else { return }
         titleLabel.text = title
         posterImage.kf.setImage(with: imagePath)
-        print(poster)
     }
 }
