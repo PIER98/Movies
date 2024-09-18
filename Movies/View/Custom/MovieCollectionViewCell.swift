@@ -13,7 +13,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
     //MARK: Cell Objects
     private lazy var posterImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleToFill
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 5
@@ -48,17 +48,18 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     private func setup() {
         contentView.addSubview(posterImage)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(addToFavoritesButton)
+        
         posterImage.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         posterImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
         posterImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
-        posterImage.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        posterImage.heightAnchor.constraint(equalToConstant: 150).isActive = true
         
-        contentView.addSubview(titleLabel)
-        titleLabel.topAnchor.constraint(equalTo: posterImage.bottomAnchor, constant: 10).isActive = true
-        titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: addToFavoritesButton.leadingAnchor, constant: -8).isActive = true
         
-        contentView.addSubview(addToFavoritesButton)
-        addToFavoritesButton.topAnchor.constraint(equalTo: posterImage.bottomAnchor).isActive = true
         addToFavoritesButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor).isActive = true
         addToFavoritesButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5).isActive = true
         addToFavoritesButton.heightAnchor.constraint(equalToConstant: 50).isActive = true

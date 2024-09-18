@@ -12,6 +12,7 @@
 		39310B082C931A56004D2514 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39310B072C931A56004D2514 /* TabViewController.swift */; };
 		39310B0B2C9320D1004D2514 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39310B0A2C9320D1004D2514 /* MovieCollectionViewCell.swift */; };
 		39310B0D2C936723004D2514 /* MoyaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39310B0C2C936723004D2514 /* MoyaService.swift */; };
+		393AF9D22C9AB2A8007E9CB6 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393AF9D12C9AB2A8007E9CB6 /* MovieDetailViewController.swift */; };
 		3971D2422C0E104C00F3C561 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3971D2412C0E104C00F3C561 /* AppDelegate.swift */; };
 		3971D2442C0E104C00F3C561 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3971D2432C0E104C00F3C561 /* SceneDelegate.swift */; };
 		3971D2462C0E104C00F3C561 /* SavedMoviesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3971D2452C0E104C00F3C561 /* SavedMoviesListViewController.swift */; };
@@ -51,6 +52,7 @@
 		39310B072C931A56004D2514 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		39310B0A2C9320D1004D2514 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		39310B0C2C936723004D2514 /* MoyaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaService.swift; sourceTree = "<group>"; };
+		393AF9D12C9AB2A8007E9CB6 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		3971D23E2C0E104C00F3C561 /* Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3971D2412C0E104C00F3C561 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3971D2432C0E104C00F3C561 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				39310B092C9320B0004D2514 /* Custom */,
 				3971D2452C0E104C00F3C561 /* SavedMoviesListViewController.swift */,
 				3917C1882C5D179A000D4E00 /* MovieListViewController.swift */,
+				393AF9D12C9AB2A8007E9CB6 /* MovieDetailViewController.swift */,
 				39310B072C931A56004D2514 /* TabViewController.swift */,
 			);
 			path = View;
@@ -497,6 +500,7 @@
 				3971D2462C0E104C00F3C561 /* SavedMoviesListViewController.swift in Sources */,
 				3971D2422C0E104C00F3C561 /* AppDelegate.swift in Sources */,
 				3971D2442C0E104C00F3C561 /* SceneDelegate.swift in Sources */,
+				393AF9D22C9AB2A8007E9CB6 /* MovieDetailViewController.swift in Sources */,
 				39310B0D2C936723004D2514 /* MoyaService.swift in Sources */,
 				3917C1892C5D179A000D4E00 /* MovieListViewController.swift in Sources */,
 				399637492C8F2503003F6F22 /* MovieListViewModel.swift in Sources */,
