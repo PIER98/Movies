@@ -21,7 +21,6 @@ class MovieListViewModel {
             case .failure(let error):
                 print(error.localizedDescription)
                 self?.stateSubject.onNext(.failed(error: error))
-            
             }
         })
     }

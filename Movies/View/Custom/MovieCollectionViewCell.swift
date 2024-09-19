@@ -37,6 +37,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
         return button
     }()
     
+    //MARK: Initializer
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -66,8 +67,8 @@ class MovieCollectionViewCell: UICollectionViewCell {
         addToFavoritesButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
-    func configure(title:String, poster: String) {
-        guard let imagePath = URL(string: Constants.imagePath + poster) else { return }
+    func configure(title:String, poster: String?) {
+        guard let imagePath = URL(string: Constants.imagePath + (poster ?? "")) else { return }
         titleLabel.text = title
         posterImage.kf.setImage(with: imagePath)
     }

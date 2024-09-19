@@ -131,4 +131,15 @@ extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width/2, height: collectionView.frame.width/2)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let movieDetailViewController = MovieDetailViewController()
+        movieDetailViewController.modalPresentationStyle = .formSheet
+        let selectedMovie = movies[indexPath.row]
+        movieDetailViewController.onMovieReceived = { movie in
+            movieDetailViewController.updateWithMovieInfo(with: movie)
+        }
+        movieDetailViewController.onMovieReceived?(selectedMovie)
+        self.present(movieDetailViewController, animated: true)
+    }
 }
