@@ -14,7 +14,7 @@ class TabViewController: UITabBarController {
         setupTabBarAppearence()
         viewControllers = [
             createTabBarItem(rootViewController: MovieListViewController(), title: "Discover", image: UIImage(systemName: "house")),
-            createTabBarItem(rootViewController: SavedMoviesListViewController(), title: "Downloads", image: UIImage(systemName: "arrow.down.message.fill"))
+            createTabBarItem(rootViewController: SearchMovieViewController(), title: "Search", image: UIImage(systemName: "magnifyingglass"))
         ]
     }
     

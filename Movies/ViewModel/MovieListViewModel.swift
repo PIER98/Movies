@@ -11,7 +11,7 @@ import RxSwift
 class MovieListViewModel {
     
    private let movieService = MovieService()
-   let stateSubject = BehaviorSubject<NetworkState>(value:.loading )
+   let stateSubject = BehaviorSubject<NetworkState>(value:.loading)
 
     func getMovies() {
         movieService.fetchData(completed: { [weak self] result  in

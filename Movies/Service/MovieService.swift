@@ -28,4 +28,20 @@ class MovieService {
             }
         }.disposed(by: disposeBag)
     }
+    
+    func searchMovie(query: String, completed: @escaping (Result<TrendingMovieResponse, Error>)-> (Void)) {
+        provider.rx.request(.searchMovies(query: query)).subscribe { response in
+            switch response {
+            case .success(let response):
+                do {
+                    let searchMovieResponse = try response.map(TrendingMovieResponse.self, using: JSONDecoder())
+                    completed(.success(searchMovieResponse))
+                } catch {
+                    completed(.failure(error))
+                }
+            case .failure(let error):
+                completed(.failure(error))
+            }
+        }.disposed(by: disposeBag)
+    }
 }

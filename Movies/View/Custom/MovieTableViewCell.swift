@@ -1,45 +1,36 @@
 //
-//  MovieCollectionViewCell.swift
+//  MovieTableViewCell.swift
 //  Movies
 //
-//  Created by Pierpaolo Mariani on 12/09/24.
+//  Created by Pierpaolo Mariani on 22/09/24.
 //
 
+import Foundation
 import UIKit
 import Kingfisher
 
-class MovieCollectionViewCell: UICollectionViewCell {
+class MovieTableViewCell: UITableViewCell {
     
-    //MARK: Cell Objects
+    //MARK: Cell objects
     private lazy var posterImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = 5
+        imageView.clipsToBounds = true
         return imageView
     }()
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
-        label.numberOfLines = 1
-        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        label.font = .systemFont(ofSize: 16, weight: .semibold)
         label.textColor = .white
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private lazy var addToFavoritesButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "star.circle")?.withRenderingMode(.alwaysOriginal).withTintColor(.white), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    //MARK: Initializer
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: Constants.tableViewIdentifier)
         setup()
     }
     
@@ -48,18 +39,18 @@ class MovieCollectionViewCell: UICollectionViewCell {
     }
     
     private func setup() {
+        contentView.backgroundColor = .black
         contentView.addSubview(posterImage)
-        contentView.addSubview(titleLabel)
-        
         posterImage.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         posterImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-        posterImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        posterImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        posterImage.widthAnchor.constraint(equalToConstant: 150).isActive = true
         posterImage.heightAnchor.constraint(equalToConstant: 150).isActive = true
         
-        titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-        titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        contentView.addSubview(titleLabel)
+        titleLabel.centerYAnchor.constraint(equalTo: posterImage.centerYAnchor).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: posterImage.trailingAnchor, constant: 50).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10).isActive = true
-        
     }
     
     func configure(title: String, poster: String?) {

@@ -11,6 +11,7 @@ import Moya
 enum MoyaService: TargetType {
 
     case getMovies
+    case searchMovies(query: String)
     
     var baseURL: URL {
         return URL(string: Constants.baseUrl)!
@@ -20,6 +21,8 @@ enum MoyaService: TargetType {
         switch self {
         case .getMovies:
             return "3/trending/movie/day"
+        case .searchMovies(query:_):
+           return "3/search/movie"
         }
     }
     
@@ -27,15 +30,25 @@ enum MoyaService: TargetType {
         switch self {
         case .getMovies:
             return .get
+        case .searchMovies(query:_):
+            return .get
         }
     }
     
     var task: Moya.Task {
-                
-        let parameters: [String: Any] = [
-            "api_key": Constants.apiKey
-        ]
-        return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
+        switch self {
+        case .getMovies:
+            let parameters: [String: Any] = [
+                "api_key": Constants.apiKey
+            ]
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
+        case .searchMovies(query: let query):
+            let parameters: [String: Any] = [
+                "query": query,
+                "api_key": Constants.apiKey
+            ]
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
+        }
     }
     
     var headers: [String : String]? {
