@@ -13,7 +13,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
     //MARK: Cell Objects
     private lazy var posterImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 5
@@ -22,19 +22,12 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
-        label.numberOfLines = 1
-        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
-    }()
-    
-    private lazy var addToFavoritesButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "star.circle")?.withRenderingMode(.alwaysOriginal).withTintColor(.white), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
     }()
     
     //MARK: Initializer

@@ -22,7 +22,7 @@ class MovieDetailViewController: UIViewController {
         return scrollView
     }()
     
-    private lazy var posterImageView: UIImageView = {
+    private lazy var posterImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 10
@@ -78,20 +78,20 @@ class MovieDetailViewController: UIViewController {
         scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
-        scrollView.addSubview(posterImageView)
-        posterImageView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
-        posterImageView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
-        posterImageView.trailingAnchor.constraint(equalTo:scrollView.trailingAnchor).isActive = true
-        posterImageView.heightAnchor.constraint(equalToConstant: 500).isActive = true
-        posterImageView.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
+        scrollView.addSubview(posterImage)
+        posterImage.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+        posterImage.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+        posterImage.trailingAnchor.constraint(equalTo:scrollView.trailingAnchor).isActive = true
+        posterImage.heightAnchor.constraint(equalToConstant: 500).isActive = true
+        posterImage.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
         
         scrollView.addSubview(titleLabel)
-        titleLabel.topAnchor.constraint(equalTo: posterImageView.bottomAnchor, constant: 10).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: posterImage.bottomAnchor, constant: 10).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 10).isActive = true
         titleLabel.widthAnchor.constraint(equalToConstant: view.frame.width/2).isActive = true
         
         scrollView.addSubview(releaseDateLabel)
-        releaseDateLabel.topAnchor.constraint(equalTo: posterImageView.bottomAnchor, constant: 10).isActive = true
+        releaseDateLabel.topAnchor.constraint(equalTo: posterImage.bottomAnchor, constant: 10).isActive = true
         releaseDateLabel.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor).isActive = true
         releaseDateLabel.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -10).isActive = true
         
@@ -109,7 +109,7 @@ class MovieDetailViewController: UIViewController {
     func updateWithMovieInfo(with detail: Movie) {
         guard let imagePath = URL(string: Constants.imagePath + (detail.poster_path ?? "")) else { return }
         print(imagePath)
-        posterImageView.kf.setImage(with: imagePath)
+        posterImage.kf.setImage(with: imagePath)
         titleLabel.text = detail.title
         releaseDateLabel.text = detail.release_date
         overviewTextView.text = detail.overview
