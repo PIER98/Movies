@@ -75,6 +75,6 @@ class RatingView: UIView {
         guard let popularity = popularity else { return }
         guard let avgVoteCount = avgVoteCount else { return }
         popularityLabel.text = "\(popularity)"
-        avgVoteCountLabel.text = "Voted by: \(avgVoteCount)"
+        avgVoteCountLabel.text = "generic.voted.by".localized() + " \(avgVoteCount)"
     }
 }

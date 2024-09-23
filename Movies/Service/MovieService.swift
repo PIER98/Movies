@@ -19,6 +19,7 @@ class MovieService {
             case .success(let response):
                 do {
                     let trendingMovieResponse = try response.map(TrendingMovieResponse.self, using: JSONDecoder())
+                    print("🤖",response.response?.url)
                     completed(.success(trendingMovieResponse))
                 }catch {
                     completed(.failure(error))

@@ -39,11 +39,13 @@ enum MoyaService: TargetType {
         switch self {
         case .getMovies:
             let parameters: [String: Any] = [
+                "language": "generic.language".localized(),
                 "api_key": Constants.apiKey
             ]
             return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
         case .searchMovies(query: let query):
             let parameters: [String: Any] = [
+                "language": "generic.language".localized(),
                 "query": query,
                 "api_key": Constants.apiKey
             ]

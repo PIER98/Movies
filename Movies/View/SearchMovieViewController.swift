@@ -42,7 +42,7 @@ class SearchMovieViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        self.title = "Search Movies"
+        self.title = "generic.search.movies".localized()
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.barTintColor = .black
         let titleColor = [NSAttributedString.Key.foregroundColor: UIColor.white]
@@ -61,7 +61,7 @@ class SearchMovieViewController: UIViewController {
         
         if let textField = searchController.searchBar.value(forKey: "searchField") as? UITextField {
             textField.textColor = UIColor.red
-            textField.attributedPlaceholder = NSAttributedString(string: "Search Movie", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+            textField.attributedPlaceholder = NSAttributedString(string: "generic.search.movies".localized(), attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
             textField.tintColor = .white
             textField.backgroundColor = .darkGray
         }

@@ -51,7 +51,7 @@ class MovieListViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        self.title = "Discover Movies"
+        self.title = "movie.list.discover".localized()
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.barTintColor = .black
         let titleColor = [NSAttributedString.Key.foregroundColor: UIColor.white]
@@ -88,9 +88,9 @@ class MovieListViewController: UIViewController {
     }
     
     private func displayAlertController(error: Error) {
-        let alert = UIAlertController(title: "Error to load data", message:error.localizedDescription , preferredStyle: .alert)
+        let alert = UIAlertController(title: "generic.error".localized(), message:error.localizedDescription , preferredStyle: .alert)
         self.present(alert, animated: true)
-        let action = UIAlertAction(title: "Retry", style: .default) {[weak self] _ in
+        let action = UIAlertAction(title: "generic.retry".localized(), style: .default) {[weak self] _ in
             self?.showLoader()
             self?.movieListViewModel.getMovies()
         }
