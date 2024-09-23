@@ -37,6 +37,7 @@ class MovieDetailViewController: UIViewController {
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.textColor = .white
         textView.font = .systemFont(ofSize: 16, weight: .regular)
+        textView.isEditable = false
         textView.backgroundColor = .clear
         return textView
     }()
