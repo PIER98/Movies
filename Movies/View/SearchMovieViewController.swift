@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-class SearchMovieViewController: UIViewController {
+class SearchMovieViewController: BaseViewController {
     
     //MARK: ViewModel
     private let searchViewModel = SearchMovieViewModel()
@@ -32,23 +32,12 @@ class SearchMovieViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
-        setupNavigationBar()
+        setupNavigationBar(title: "generic.search.movies".localized())
         subscribeToViewModel()
         setupTableView()
         setupSearchController()
         setupDelegate()
         setupSearchControllerDelegate()
-    }
-    
-    private func setupNavigationBar() {
-        self.title = "generic.search.movies".localized()
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.barTintColor = .black
-        let titleColor = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navigationController?.navigationBar.largeTitleTextAttributes = titleColor
-        let standardTitleColor = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navigationController?.navigationBar.titleTextAttributes = standardTitleColor
     }
     
     private func setupTableView() {

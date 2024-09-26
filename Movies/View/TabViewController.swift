@@ -26,7 +26,6 @@ class TabViewController: UITabBarController {
         let navigationController = UINavigationController(rootViewController: rootViewController)
         navigationController.tabBarItem.title = title
         navigationController.tabBarItem.image = image
-        rootViewController.navigationController?.title = title
         return navigationController
     }
 }

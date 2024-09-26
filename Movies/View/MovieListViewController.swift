@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import Kingfisher
 
-class MovieListViewController: UIViewController {
+class MovieListViewController: BaseViewController {
     
     //MARK: ViewModel
     private let movieListViewModel = MovieListViewModel()
@@ -43,21 +43,11 @@ class MovieListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationBar()
+        setupNavigationBar(title: "movie.list.discover".localized())
         setup()
         setupCollectionView()
         movieListViewModel.getMovies()
         subscribeToViewModel()
-    }
-    
-    private func setupNavigationBar() {
-        self.title = "movie.list.discover".localized()
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.barTintColor = .black
-        let titleColor = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navigationController?.navigationBar.largeTitleTextAttributes = titleColor
-        let standardTitleColor = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navigationController?.navigationBar.titleTextAttributes = standardTitleColor
     }
     
     private func setupCollectionView() {
@@ -66,7 +56,6 @@ class MovieListViewController: UIViewController {
     }
     
     private func setup() {
-        view.backgroundColor = .black
         view.addSubview(moviesListCollectionView)
         moviesListCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         moviesListCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true

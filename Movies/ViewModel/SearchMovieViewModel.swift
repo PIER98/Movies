@@ -12,7 +12,7 @@ class SearchMovieViewModel {
    private let movieService = MovieService()
    let movieSubject = PublishSubject<TrendingMovieResponse>()
     
-    func searchMovies(query: String) {
+   func searchMovies(query: String) {
         movieService.searchMovie(query: query) { result in
             switch result {
             case .success(let response):
