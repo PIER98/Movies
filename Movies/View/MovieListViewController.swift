@@ -88,7 +88,7 @@ class MovieListViewController: UIViewController {
     }
     
     private func displayAlertController(error: Error) {
-        let alert = UIAlertController(title: "generic.error".localized(), message:error.localizedDescription , preferredStyle: .alert)
+        let alert = UIAlertController(title: "generic.error".localized(), message:error.networkError , preferredStyle: .alert)
         self.present(alert, animated: true)
         let action = UIAlertAction(title: "generic.retry".localized(), style: .default) {[weak self] _ in
             self?.showLoader()

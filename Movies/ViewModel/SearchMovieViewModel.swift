@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 class SearchMovieViewModel {
-   private  let movieService = MovieService()
+   private let movieService = MovieService()
    let movieSubject = PublishSubject<TrendingMovieResponse>()
     
     func searchMovies(query: String) {

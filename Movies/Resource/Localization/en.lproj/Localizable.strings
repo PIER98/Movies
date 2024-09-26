@@ -6,3 +6,4 @@
 "generic.error" = "Error";
 "generic.voted.by"= "Voted by:";
 "generic.language" = "en-US";
+"generic.network.error"= "Oh oh something went wrong";
