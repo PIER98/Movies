@@ -76,16 +76,6 @@ class MovieListViewController: BaseViewController {
         loader.stopAnimating()
     }
     
-    private func displayAlertController(error: Error) {
-        let alert = UIAlertController(title: "generic.error".localized(), message:error.networkError , preferredStyle: .alert)
-        self.present(alert, animated: true)
-        let action = UIAlertAction(title: "generic.retry".localized(), style: .default) {[weak self] _ in
-            self?.showLoader()
-            self?.movieListViewModel.getMovies()
-        }
-        alert.addAction(action)
-    }
-    
     private func subscribeToViewModel() {
         movieListViewModel.stateSubject.subscribe(onNext: {[weak self] state in
             switch state {
@@ -97,7 +87,10 @@ class MovieListViewController: BaseViewController {
                 self?.moviesListCollectionView.reloadData()
             case .failed(error: let error):
                 self?.hideLoader()
-                self?.displayAlertController(error: error)
+                self?.displayAlertController(error: error, handler: {
+                    self?.showLoader()
+                    self?.movieListViewModel.getMovies()
+                })
             }
         }).disposed(by: disposeBag)
     }

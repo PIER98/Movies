@@ -10,16 +10,16 @@ import RxSwift
 
 class SearchMovieViewModel {
    private let movieService = MovieService()
-   let movieSubject = PublishSubject<TrendingMovieResponse>()
+   let stateSubject = PublishSubject<SearchState>()
     
    func searchMovies(query: String) {
         movieService.searchMovie(query: query) { result in
             switch result {
             case .success(let response):
-                self.movieSubject.onNext(response)
+                self.stateSubject.onNext(.success(movies: response.results))
                 print(response.results)
             case .failure(let error):
-                self.movieSubject.onError(error)
+                self.stateSubject.onNext(.failed(error: error))
                 print(error.localizedDescription)
             }
         }

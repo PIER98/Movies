@@ -67,9 +67,14 @@ class SearchMovieViewController: BaseViewController {
     }
     
     private func subscribeToViewModel() {
-        searchViewModel.movieSubject.subscribe(onNext: { [weak self] movie in
-            self?.filteredMovies = movie.results
-            self?.tableView.reloadData()
+        searchViewModel.stateSubject.subscribe(onNext: { [weak self] state in
+            switch state {
+            case .success(movies: let movie):
+                self?.filteredMovies = movie
+                self?.tableView.reloadData()
+            case .failed(error: let error):
+                self?.displayAlertController(error: error, handler: nil)
+            }
         }).disposed(by: disposeBag)
     }
     
@@ -110,7 +115,6 @@ extension SearchMovieViewController: UISearchResultsUpdating{
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
-        print(text)
         searchViewModel.searchMovies(query: text)
     }
 }
