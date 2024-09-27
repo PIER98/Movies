@@ -17,10 +17,8 @@ class SearchMovieViewModel {
             switch result {
             case .success(let response):
                 self.stateSubject.onNext(.success(movies: response.results))
-                print(response.results)
             case .failure(let error):
                 self.stateSubject.onNext(.failed(error: error))
-                print(error.localizedDescription)
             }
         }
     }

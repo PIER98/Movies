@@ -108,7 +108,6 @@ class MovieDetailViewController: UIViewController {
     
     func updateWithMovieInfo(with detail: Movie) {
         guard let imagePath = URL(string: Constants.imagePath + (detail.poster_path ?? "")) else { return }
-        print(imagePath)
         posterImage.kf.setImage(with: imagePath)
         titleLabel.text = detail.title
         releaseDateLabel.text = detail.release_date
